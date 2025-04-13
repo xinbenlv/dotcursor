@@ -5,9 +5,25 @@ alwaysApply: false
 ---
 
 ## When user asks for `git commit`
-- Always run  `git --no-pager diff` and go through the *current* code change and summarize the updates into git commit message and then execute the git commit. Commit message should include a brief oneliner summary and then a multi-line bullet points of details. The oneliner summary should follow "conventional commits" format. Check last 100 git commit history to find existing "scope" of convention comments, try to reuse known scope if possible, unless you feel it's better to suggest a new scope, then do use that new scope.
+- Always run  `git --no-pager diff --staged` and go through the *current* staged code change and
+summarize the updates into git commit message and then execute the git commit.
+If it's empty, tell user and stop.
+
+- Commit message should include a brief oneliner summary and then a multi-line
+  bullet points of details. 
+- The oneliner summary should follow "conventional commits" format. 
+  Check last 100 git commit history to find existing "scope" of convention comments
+  try to reuse known scope if possible, unless you feel it's better to suggest
+  a new scope, then do use that new scope.
 
 ## When asked for `gt create`
-This is graphite function to create a NEW pull request on top of the one below (current), which has the following usage `gt create <new_branch_name> -m <git_commit_message>`. Based on the current staged git changes, please summarize them as a branch name and a `git commit` message. Please format message as plaintext with proper handle of newline to be copy and used in terminal. Output in markdown for easy copy-and-paste.
+- This is graphite function to create a NEW pull request on top of the one
+below (current), which has the following usage `gt create <new_branch_name>
+-m <git_commit_message>`. Based on the current staged git changes, please
+summarize them as a branch name and a `git commit` message. Please format
+message as plaintext with proper handle of newline to be copy and used
+in terminal. Output in markdown for easy copy-and-paste.
 
-## Never execute git commit for me unless I expeclitly ask you to. 
+## Additiona requirement
+- Never execute `git commit` for me unless I explicitly ask you to. 
+- Never execute `git add` for me unless I explicitly ask you to.
